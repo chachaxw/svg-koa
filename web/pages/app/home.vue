@@ -1,7 +1,10 @@
 <template>
     <div id="home-app">
-        <div class="page-header">PPT-KOA</div>
+        <div class="page-header">
+            PPT-KOA
+        </div>
         <div class="container">
+            <tools></tools>
             <canvas id="fabricCanvas"></canvas>
         </div>
         <back-to-top></back-to-top>
@@ -10,6 +13,7 @@
 <script>
     import { fabric } from 'fabric';
     import backToTop from '../../components/back-to-top';
+    import tools from '../../components/tools';
 
     export default {
         data() {
@@ -17,7 +21,8 @@
 
             };
         },
-        components:{
+        components: {
+            tools,
             backToTop,
         },
         methods: {
@@ -47,7 +52,7 @@
         },
     }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
     #home-app {
         height: 100%;
     }
@@ -61,20 +66,27 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        background-color: #ffffff;
         box-shadow: 1px 5px 40px rgba(0, 0, 0, .08);
     }
 
     .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        width: 100%;
+        padding: 0;
+        position: relative;
         height: calc(100% - 74px);
+    }
+
+    .canvas-container {
+        margin-top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     #fabricCanvas {
         width: 1066px;
         height: 600px;
-        box-shadow: 1px 5px 8px 1px rgba(0, 0, 0, .08);
+        box-shadow: 1px 5px 8px rgba(0, 0, 0, .08);
         background-color: #ffffff;
     }
 
