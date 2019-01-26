@@ -1,0 +1,43 @@
+# 多语言路由前缀
+locales: []
+
+# 是否使用模拟数据api(prod模式无效)
+isMockAPI : false
+
+# development 开发模式
+# production 生产模式
+# port server端口
+# apiServer api服务器 如果isMockAPI
+development:
+    apiServer : 'http://pdm.hqygou.com'
+    port: 3030
+    #redisStore :
+    #   "host": '127.0.0.1'
+    #   "port": '6379'
+
+production:
+    apiServer : 'http://pdm.gw-ec.com'
+    port: 3030
+    #redisStore :
+    #   "host": '127.0.0.1'
+    #   "port": '6379'
+
+#webpack构建路径(entry)
+buildPath:
+    # name 路径
+    # isIndexEntry 是否使用index.js作为webpack.entry.
+    # isIndexEntry = true
+    # './web/pages/main-app/index.js'  --> /dist/static/js/main-app[chunkhash].js
+    # 使用index.js上一级目录名作为打包文件名(example.js).
+
+    # isIndexEntry = false
+    # './web/locale/zh.js'           --> /dist/static/js/zh[chunkhash].js
+    # 使用当前文件作为打包文件名(zh.js).
+     -
+       #应用入口
+       name: './web/pages'
+       isIndexEntry : true
+
+     #-
+       #多语言入口
+       #name: './web/locale'

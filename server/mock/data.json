@@ -1,0 +1,299 @@
+{
+	"from_platform": "BF",
+	"method": "manage.Product.Add",
+	"category_id": 3488,
+	"product_source": 6,
+	"charger_spec": "1",
+	"specs": [{
+		"id": 473548,
+		"product_name": "180630_男士帆布竖款单肩包_褐色_型号8031#",
+		"product_name_en": "Men Canvas Shoulder Bag Leather Military Messenger Bag SatchelVintageandba",
+		"product_weight": 0.55,
+		"actual_weight": 0.551,
+		"purchase_price": 28.5000,
+		"sale_price_base": "25.00",
+		"currency_code": "RUB",
+		"product_length": 27.0,
+		"product_width": 24.0,
+		"product_height": 9.0,
+		"package_length": 27.0,
+		"sales_weight": 12.2,
+		"package_width": 24.0,
+		"package_height": 9.0,
+		"color": "white1",
+		"size": "inspector",
+		"image_path": "//d1vs5fqeka2glf.cloudfront.net/8e/c9/8e20670bed52ca792fc66af6081091c9_350x350.jpg",
+		"product_spec": "22222222",
+		"supplier_product_sn": "34575756",
+		"price_limit": [{
+			"platform_id": 9999,
+			"limit_type": 2,
+			"limit_price_type": 2,
+			"country_acronym": "",
+			"price_num": 20.22,
+			"rate_code": "USD",
+			"keep_user": "weinengyu"
+		}],
+		"custom_size_data": {
+			"col_info": [{
+				"col_name": "Our Size",
+				"col_number": "1",
+				"is_change": "0"
+			}, {
+				"col_name": "INT",
+				"col_number": "2",
+				"is_change": "0"
+			}, {
+				"col_name": "US",
+				"col_number": "3",
+				"is_change": "1"
+			}, {
+				"col_name": "UK",
+				"col_number": "4",
+				"is_change": "0"
+			}, {
+				"col_name": "FR2",
+				"col_number": "5",
+				"is_change": "0"
+			}, {
+				"col_name": "EU",
+				"col_number": "6",
+				"is_change": "0"
+			}, {
+				"col_name": "IT",
+				"col_number": "7",
+				"is_change": "0"
+			}],
+			"data_info": {
+				"1": {
+					"1": {
+						"value1": "XS (150\/76A)",
+						"value2": ""
+					},
+					"2": {
+						"value1": "XXS",
+						"value2": ""
+					},
+					"3": {
+						"value1": "00",
+						"value2": ""
+					},
+					"4": {
+						"value1": "0",
+						"value2": ""
+					},
+					"5": {
+						"value1": "30",
+						"value2": ""
+					},
+					"6": {
+						"value1": "28",
+						"value2": ""
+					},
+					"7": {
+						"value1": "34",
+						"value2": ""
+					}
+				},
+				"2": {
+					"1": {
+						"value1": "S (155\/80A)",
+						"value2": ""
+					},
+					"2": {
+						"value1": "XS",
+						"value2": ""
+					},
+					"3": {
+						"value1": "0",
+						"value2": "2"
+					},
+					"4": {
+						"value1": "2",
+						"value2": "4"
+					},
+					"5": {
+						"value1": "32",
+						"value2": ""
+					},
+					"6": {
+						"value1": "30",
+						"value2": "32"
+					},
+					"7": {
+						"value1": "36",
+						"value2": "38"
+					}
+				},
+				"3": {
+					"1": {
+						"value1": "M (160\/84A)",
+						"value2": ""
+					},
+					"2": {
+						"value1": "S",
+						"value2": ""
+					},
+					"3": {
+						"value1": "4",
+						"value2": "6"
+					},
+					"4": {
+						"value1": "6",
+						"value2": "8"
+					},
+					"5": {
+						"value1": "34",
+						"value2": ""
+					},
+					"6": {
+						"value1": "34",
+						"value2": "36"
+					},
+					"7": {
+						"value1": "40",
+						"value2": "42"
+					}
+				},
+				"4": {
+					"1": {
+						"value1": "L (165\/88A)",
+						"value2": ""
+					},
+					"2": {
+						"value1": "M",
+						"value2": ""
+					},
+					"3": {
+						"value1": "8",
+						"value2": "10"
+					},
+					"4": {
+						"value1": "10",
+						"value2": "12"
+					},
+					"5": {
+						"value1": "36",
+						"value2": ""
+					},
+					"6": {
+						"value1": "38",
+						"value2": "40"
+					},
+					"7": {
+						"value1": "44",
+						"value2": "46"
+					}
+				},
+				"5": {
+					"1": {
+						"value1": "XL (170\/92A)",
+						"value2": ""
+					},
+					"2": {
+						"value1": "L",
+						"value2": ""
+					},
+					"3": {
+						"value1": "12",
+						"value2": "14"
+					},
+					"4": {
+						"value1": "14",
+						"value2": "16"
+					},
+					"5": {
+						"value1": "38",
+						"value2": ""
+					},
+					"6": {
+						"value1": "42",
+						"value2": "44"
+					},
+					"7": {
+						"value1": "48",
+						"value2": "50"
+					}
+				},
+				"6": {
+					"1": {
+						"value1": "2XL (175\/96A)",
+						"value2": ""
+					},
+					"2": {
+						"value1": "XL",
+						"value2": ""
+					},
+					"3": {
+						"value1": "16",
+						"value2": "18"
+					},
+					"4": {
+						"value1": "18",
+						"value2": "20"
+					},
+					"5": {
+						"value1": "40",
+						"value2": ""
+					},
+					"6": {
+						"value1": "46",
+						"value2": "48"
+					},
+					"7": {
+						"value1": "52",
+						"value2": "54"
+					}
+				},
+				"7": {
+					"1": {
+						"value1": "3XL (180\/100A)",
+						"value2": ""
+					},
+					"2": {
+						"value1": "2XL",
+						"value2": ""
+					},
+					"3": {
+						"value1": "20",
+						"value2": "22"
+					},
+					"4": {
+						"value1": "22",
+						"value2": "24"
+					},
+					"5": {
+						"value1": "42",
+						"value2": ""
+					},
+					"6": {
+						"value1": "50",
+						"value2": "52"
+					},
+					"7": {
+						"value1": "56",
+						"value2": "58"
+					}
+				}
+			},
+			"max_row": 7,
+			"max_col": 7
+		},
+		"size_chart_template_id": 24,
+		"standard_size_chart_id": 8,
+		"delivery_average_day": 12,
+		"expect_order_quantity": 10,
+		"package_num": 15,
+		"is_edit_same_price": 2
+	}],
+	"declare_name_cn": "织物组织",
+	"declare_name_en": "fabricorganizer",
+	"character_ids": "7,8,9",
+	"goods_desc": "this is test",
+	"product_label": "0000014",
+	"recommend_level": "o",
+	"supplier_sn": "T027249",
+	"feature": "test",
+	"special_remarks": "133444",
+	"buy_url": "https://github.com"
+}
