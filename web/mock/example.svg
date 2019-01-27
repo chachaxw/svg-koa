@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400px" height="400px" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#E9E9E9" x="0" y="0" width="400" height="400"></rect>
+        <circle id="Oval" fill="#3AE49E" cx="200" cy="130" r="46"></circle>
+        <polygon id="Triangle" fill="#EB6C1E" points="200 176 299 258 101 258"></polygon>
+        <text id="This-is-a-svg-example" font-family="PingFangSC-Regular, PingFang SC" font-size="18" font-weight="normal" fill="#000000">
+            <tspan x="110" y="325">This is a svg example</tspan>
+        </text>
+    </g>
+</svg>

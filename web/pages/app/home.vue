@@ -4,51 +4,38 @@
             PPT-KOA
         </div>
         <div class="container">
-            <tools></tools>
+            <tools :canvas="canvas"></tools>
             <canvas id="fabricCanvas"></canvas>
         </div>
-        <back-to-top></back-to-top>
     </div>
 </template>
 <script>
-    import { fabric } from 'fabric';
-    import backToTop from '../../components/back-to-top';
     import tools from '../../components/tools';
 
     export default {
         data() {
             return {
-
+                canvas: {},
             };
         },
         components: {
             tools,
-            backToTop,
         },
         methods: {
-            
-        },
-        watch: {
-
+            initCanvas() {
+                // create a wrapper around native canvas element
+                const canvas = new this.fabric.Canvas('fabricCanvas', {
+                    width: 1066,
+                    height: 600,
+                    isDrawingMode: false,
+                    selectionBorderColor: '#ddd',
+                    selectionColor: 'rgba(0,0,0,.05)',
+                });
+                this.$data.canvas = canvas;
+            },
         },
         mounted() {
-            console.log(fabric);
-            // create a wrapper around native canvas element
-            const canvas = new fabric.Canvas('fabricCanvas', {
-                width: 1066,
-                height: 600,
-            });
-            // create a rectangle object
-            const rect = new fabric.Rect({
-                left: 100,
-                top: 100,
-                fill: '#FFBCFE',
-                width: 200,
-                height: 200
-            });
-
-            // "add" rectangle onto canvas
-            canvas.add(rect);
+            this.initCanvas();
         },
     }
 </script>
@@ -78,12 +65,15 @@
     }
 
     .canvas-container {
+        position: absolute;
         margin-top: 50px;
         left: 50%;
         transform: translateX(-50%);
     }
 
     #fabricCanvas {
+        display: block;
+        margin: 0 auto;
         width: 1066px;
         height: 600px;
         box-shadow: 1px 5px 8px rgba(0, 0, 0, .08);

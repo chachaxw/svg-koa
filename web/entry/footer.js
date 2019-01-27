@@ -1,1 +1,1 @@
-window.footer = 'xlsx-koa-footer';
+window.footer = 'ppt-koa-footer';

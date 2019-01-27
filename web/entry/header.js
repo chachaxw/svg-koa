@@ -1,7 +1,10 @@
 import Vue from 'vue';
+import Icon from 'vue-awesome';
 
 global.Vue = Vue;
 Vue.config.productionTip = false;
+
+Vue.component('icon', Icon);
 
 require('../global');
 require('../vendor');
