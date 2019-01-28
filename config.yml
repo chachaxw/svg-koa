@@ -9,14 +9,14 @@ isMockAPI : false
 # port server端口
 # apiServer api服务器 如果isMockAPI
 development:
-    apiServer : 'http://pdm.hqygou.com'
+    apiServer : 'http://localhost'
     port: 3030
     #redisStore :
     #   "host": '127.0.0.1'
     #   "port": '6379'
 
 production:
-    apiServer : 'http://pdm.gw-ec.com'
+    apiServer : 'http://localhost'
     port: 3030
     #redisStore :
     #   "host": '127.0.0.1'
@@ -33,11 +33,11 @@ buildPath:
     # isIndexEntry = false
     # './web/locale/zh.js'           --> /dist/static/js/zh[chunkhash].js
     # 使用当前文件作为打包文件名(zh.js).
-     -
-       #应用入口
-       name: './web/pages'
-       isIndexEntry : true
+    -
+        #应用入口
+        name: './web/pages'
+        isIndexEntry : true
 
-     #-
-       #多语言入口
-       #name: './web/locale'
+    #-
+        #多语言入口
+        #name: './web/locale'

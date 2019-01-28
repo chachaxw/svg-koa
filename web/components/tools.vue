@@ -29,6 +29,7 @@
     export default {
         data() {
             return {
+                activeObject: {},
                 isDrawingMode: false,
                 isShowPicker: false,
                 colors: [],
@@ -113,10 +114,15 @@
             copy() {
                 console.log('Copy Object');
             },
+
+            getActiveObject() {
+                return this.$props.canvas.getActiveObject();
+            },
         },
         watch: {
             'color'(newVal, oldVal) {
-                console.log(newVal, oldVal);
+                const activeObject = this.getActiveObject();
+                console.log(newVal, activeObject);
                 if (newVal) {
                     this.$data.colorValue = newVal.hex;
                 }
@@ -198,6 +204,7 @@
         outline: none;
         width: 32px;
         height: 32px;
+        color: #444444;
         cursor: pointer;
     }
 

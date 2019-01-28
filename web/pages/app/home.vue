@@ -32,6 +32,7 @@
                     selectionColor: 'rgba(0,0,0,.05)',
                 });
                 this.$data.canvas = canvas;
+                console.log(canvas);
             },
         },
         mounted() {

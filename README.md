@@ -67,6 +67,8 @@ npm run prod   # 启动生产模式(prod)
 
 ## example
 
+![Screen Shot](https://github.com/chachaxw/ppt-koa/blob/master/public/img/ppt-koa.jpg)
+
 ### 1.新建应用路由
 
 * ```/server/router/app/index.js```
