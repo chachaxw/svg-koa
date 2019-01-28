@@ -33,6 +33,7 @@
                 isShowPicker: false,
                 colors: [],
                 color: {},
+                colorValue: null,
             }
         },
         name: 'tools',
@@ -61,9 +62,9 @@
                 const rect = new this.fabric.Rect({
                     left: 100,
                     top: 100,
-                    fill: '#FFBCFE',
                     width: 200,
-                    height: 200
+                    height: 200,
+                    fill: this.$data.colorValue || '#FFBCFE',
                 });
                 this.$props.canvas.add(rect);
             },
@@ -73,7 +74,7 @@
                     left: 200,
                     top: 100,
                     radius: 40,
-                    fill: '#73D8FF',
+                    fill: this.$data.colorValue || '#73D8FF',
                 });
                 this.$props.canvas.add(circle);
             },
@@ -81,7 +82,7 @@
             addPolygon() {
                 var path = new this.fabric.Path('M 0 0 L 300 100 L 200 300 z');
                 path.set({ 
-                    fill: 'red', 
+                    fill: this.$data.colorValue || 'red', 
                     stroke: 'green', 
                     opacity: 0.5
                 });
@@ -114,35 +115,35 @@
             },
         },
         watch: {
-            'colorValue'(newVal, oldVal) {
+            'color'(newVal, oldVal) {
                 console.log(newVal, oldVal);
                 if (newVal) {
-                    this.$data.colorValue = newVal;
+                    this.$data.colorValue = newVal.hex;
                 }
             },
         },
         mounted() {
             this.fabric.loadSVGFromURL(example, (objects, options) => {
                 const obj = fabric.util.groupSVGElements(objects, options);
-                console.log(objects);
+                console.log(objects, obj);
                 const rect = new this.fabric.Rect({
-                    left: 40,
-                    top: 40,
+                    left: objects[0].left + 300,
+                    top: objects[0].top + 300,
                     width: objects[0].width,
                     height: objects[0].height,
                     fill: objects[0].fill,
                 });
                 const circle = new this.fabric.Circle({
-                    left: 40,
-                    top: 40,
+                    left: objects[1].left + 300,
+                    top: objects[1].top + 300,
                     radius: objects[1].radius,
                     fill: objects[1].fill,
                     width: objects[1].width,
                     height: objects[1].height,
                 });
                 const triangle = new this.fabric.Triangle({
-                    left: 50,
-                    top: 100,
+                    left: objects[2].left + 300,
+                    top: objects[2].top + 300,
                     points: objects[2].points,
                     fill: objects[2].fill,
                     width: objects[2].width,
@@ -150,8 +151,8 @@
                     pathOffset: objects[2].pathOffset,
                 });
                 const text = new this.fabric.IText(objects[3].text, {
-                    left: 200,
-                    top: 200,
+                    left: objects[3].left + 300,
+                    top: objects[3].top + 300,
                     fill: objects[3].fill,
                     fontSize: objects[3].fontSize,
                     fontWeight: objects[3].fontWeight,
@@ -197,7 +198,7 @@
         outline: none;
         width: 32px;
         height: 32px;
-        line-height: 32px;
+        cursor: pointer;
     }
 
     /* Color Picker Style */

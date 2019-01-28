@@ -3,7 +3,7 @@
         <div class="page-header">
             PPT-KOA
         </div>
-        <div class="container">
+        <div class="container-fluid">
             <tools :canvas="canvas"></tools>
             <canvas id="fabricCanvas"></canvas>
         </div>
@@ -57,7 +57,7 @@
         box-shadow: 1px 5px 40px rgba(0, 0, 0, .08);
     }
 
-    .container {
+    .container-fluid {
         width: 100%;
         padding: 0;
         position: relative;
