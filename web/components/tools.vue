@@ -5,16 +5,16 @@
             <button @click="addRect"><icon name="vector-square"></icon></button>
             <button @click="addPolygon"><icon name="draw-polygon"></icon></button>
             <button @click="addCircle"><icon name="circle"></icon></button>
-            <button @click="draw"><icon name="pen-nib"></icon></button>
-            <button @click="copy"><icon name="copy"></icon></button>
+            <button @click="onDraw"><icon name="pen-nib"></icon></button>
+            <button @click="onCopy"><icon name="copy"></icon></button>
             <button @click="isShowPicker = !isShowPicker">
                 <icon name="palette"></icon>
             </button>
             <button><icon name="file"></icon></button>
-            <button @click="remove">
+            <button @click="onRemove">
                 <icon name="times"></icon>
             </button>
-            <button @click="clear"><icon name="trash"></icon></button>
+            <button @click="onClear"><icon name="trash"></icon></button>
         </div>
         <transition name="slide-fade">
             <compact v-model="color" v-show="isShowPicker"></compact>
@@ -90,11 +90,11 @@
                 this.$props.canvas.add(path);
             },
 
-            draw() {
+            onDraw() {
                 this.$props.canvas.isDrawingMode = !this.$data.isDrawingMode;
             },
 
-            remove() {
+            onRemove() {
                 const activeObject = this.$props.canvas.getActiveObject();
 
                 if (!activeObject) {
@@ -103,7 +103,7 @@
                 this.$props.canvas.fxRemove(activeObject);
             },
 
-            clear() {
+            onClear() {
                 this.$props.canvas.clear();
             },
 
@@ -111,7 +111,7 @@
                 this.$props.isShowPicker = !this.$data.isShowPicker;
             },
 
-            copy() {
+            onCopy() {
                 console.log('Copy Object');
             },
 
@@ -127,6 +127,29 @@
                     this.$data.colorValue = newVal.hex;
                 }
             },
+        },
+        created() {
+            document.onkeydown = (ev) => {
+                console.log(ev);
+                const keyCode = ev.keyCode || ev.which;
+
+                if ((ev.ctrlCode && keyCode === 8) || (ev.metaKey && keyCode === 8)) {
+                    console.log('Clear All');
+                    this.onClear();
+                }
+
+                if ((ev.ctrlCode && keyCode === 67) || (ev.metaKey && keyCode === 67)) {
+                    console.log('Copy');
+                    this.onCopy();
+                }
+
+                if (keyCode === 8) {
+                    console.log('Delete');
+                    this.onRemove();
+                }
+
+                ev.preventDefault();
+            };
         },
         mounted() {
             this.fabric.loadSVGFromURL(example, (objects, options) => {
@@ -206,6 +229,7 @@
         height: 32px;
         color: #444444;
         cursor: pointer;
+        background-color: transparent;
     }
 
     /* Color Picker Style */
