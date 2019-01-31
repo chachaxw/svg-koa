@@ -10,6 +10,7 @@
     </div>
 </template>
 <script>
+    import { VueContext } from 'vue-context';
     import tools from '../../components/tools';
 
     export default {
@@ -28,11 +29,11 @@
                     width: 1066,
                     height: 600,
                     isDrawingMode: false,
+                    stopContextMenu: true,
                     selectionBorderColor: '#ddd',
                     selectionColor: 'rgba(0,0,0,.05)',
                 });
                 this.$data.canvas = canvas;
-                console.log(canvas);
             },
         },
         mounted() {

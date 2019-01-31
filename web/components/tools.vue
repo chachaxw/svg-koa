@@ -6,6 +6,8 @@
             <button @click="addPolygon"><icon name="draw-polygon"></icon></button>
             <button @click="addCircle"><icon name="circle"></icon></button>
             <button @click="onDraw"><icon name="pen-nib"></icon></button>
+            <button @click="onGroup"><icon name="object-group"></icon></button>
+            <button @click="onUngroup"><icon name="object-ungroup"></icon></button>
             <button @click="onCopy"><icon name="copy"></icon></button>
             <button @click="isShowPicker = !isShowPicker">
                 <icon name="palette"></icon>
@@ -25,6 +27,7 @@
 <script>
     import compact from 'vue-color/src/components/Compact';
     import example from '../mock/example.svg';
+    import test from '../mock/test.svg';
 
     export default {
         data() {
@@ -52,7 +55,7 @@
         methods: {
             addText() {
                 const text = new this.fabric.IText('Type something', {
-                    fill: 'red',
+                    fill: this.$data.colorValue || '#FFFFFF',
                     fontSize: 16,
                     fontFamily: 'Arial',
                 });
@@ -90,6 +93,30 @@
                 this.$props.canvas.add(path);
             },
 
+            onGroup() {
+                const canvas = this.$props.canvas;
+                if (!canvas.getActiveObject()) {
+                    return;
+                }
+                if (canvas.getActiveObject().type !== 'activeSelection') {
+                    return;
+                }
+                canvas.getActiveObject().toGroup();
+                canvas.requestRenderAll();
+            },
+
+            onUngroup() {
+                const canvas = this.$props.canvas;
+                if (!canvas.getActiveObject()) {
+                    return;
+                }
+                if (canvas.getActiveObject().type !== 'group') {
+                    return;
+                }
+                canvas.getActiveObject().toActiveSelection();
+                canvas.requestRenderAll();
+            },
+
             onDraw() {
                 this.$props.canvas.isDrawingMode = !this.$data.isDrawingMode;
             },
@@ -115,85 +142,102 @@
                 console.log('Copy Object');
             },
 
-            getActiveObject() {
-                return this.$props.canvas.getActiveObject();
+            setActiveObjectColor(color) {
+                const canvas = this.$props.canvas;
+                const activeObject = canvas.getActiveObject();
+                if (!activeObject) {
+                    return;
+                }
+                activeObject.set('fill', color);
+                canvas.requestRenderAll();
             },
+
+            setActiveObjectsColor(color) {
+                const canvas = this.$props.canvas;
+                const activeObjects = canvas.getActiveObjects();
+                if (!activeObjects) {
+                    return;
+                }
+                console.log(activeObjects);
+                // activeObject.set('fill', color);
+                // canvas.requestRenderAll();
+            },
+
         },
         watch: {
             'color'(newVal, oldVal) {
-                const activeObject = this.getActiveObject();
-                console.log(newVal, activeObject);
                 if (newVal) {
                     this.$data.colorValue = newVal.hex;
+                    this.setActiveObjectsColor(newVal.hex);
                 }
             },
         },
         created() {
             document.onkeydown = (ev) => {
-                console.log(ev);
                 const keyCode = ev.keyCode || ev.which;
 
-                if ((ev.ctrlCode && keyCode === 8) || (ev.metaKey && keyCode === 8)) {
-                    console.log('Clear All');
+                if ((ev.shiftKey && ev.ctrlCode && keyCode === 8) || (ev.shiftKey && ev.metaKey && keyCode === 8)) {
                     this.onClear();
+                    ev.preventDefault();
                 }
 
                 if ((ev.ctrlCode && keyCode === 67) || (ev.metaKey && keyCode === 67)) {
-                    console.log('Copy');
                     this.onCopy();
+                    ev.preventDefault();
                 }
 
-                if (keyCode === 8) {
-                    console.log('Delete');
+                if ((ev.ctrlCode && keyCode === 8) || (ev.metaKey && keyCode === 8)) {
                     this.onRemove();
+                    ev.preventDefault();
                 }
-
-                ev.preventDefault();
             };
         },
         mounted() {
-            this.fabric.loadSVGFromURL(example, (objects, options) => {
-                const obj = fabric.util.groupSVGElements(objects, options);
-                console.log(objects, obj);
-                const rect = new this.fabric.Rect({
-                    left: objects[0].left + 300,
-                    top: objects[0].top + 300,
-                    width: objects[0].width,
-                    height: objects[0].height,
-                    fill: objects[0].fill,
+            console.log(this.fabric)
+            this.fabric.loadSVGFromURL(test, (objects, options) => {
+                objects.forEach(item => {
+                    switch (item.type) {
+                        // case 'path':
+                        //     const path = new this.fabric.Path(item.oCoords, {
+                        //         ...item
+                        //     });
+                        //     this.$props.canvas.add(path);
+                        //     break;
+                        case 'circle':
+                            const circle = new this.fabric.Circle({...item});
+                            this.$props.canvas.add(circle);
+                            break;
+                        case 'rect':
+                            const rect = new this.fabric.Rect({...item});
+                            this.$props.canvas.add(rect);
+                            break;
+                        case 'polygon':
+                            const polygon = new this.fabric.Polygon(item.oCoords, {...item});
+                            this.$props.canvas.add(polygon);
+                            break;
+                        case 'text':
+                            const iText = new this.fabric.IText(item.text, {
+                                fill: item.fill,
+                                fontSize: item.fontSize,
+                                fontFamily: item.fontFamily,
+                                aCoords: item.aCoords,
+                                oCoords: item.oCoords,
+                                top: item.top,
+                                left: item.left,
+                                originX: 'left',
+                                originY: 'top',
+                            });
+                            this.$props.canvas.add(iText);
+                            break;
+                        case 'ellipse':
+                            const ellipse = new this.fabric.Ellipse({...item});
+                            this.$props.canvas.add(ellipse);
+                            break;
+                        default:
+                            this.$props.canvas.add(item);
+                            break;
+                    }
                 });
-                const circle = new this.fabric.Circle({
-                    left: objects[1].left + 300,
-                    top: objects[1].top + 300,
-                    radius: objects[1].radius,
-                    fill: objects[1].fill,
-                    width: objects[1].width,
-                    height: objects[1].height,
-                });
-                const triangle = new this.fabric.Triangle({
-                    left: objects[2].left + 300,
-                    top: objects[2].top + 300,
-                    points: objects[2].points,
-                    fill: objects[2].fill,
-                    width: objects[2].width,
-                    height: objects[2].height,
-                    pathOffset: objects[2].pathOffset,
-                });
-                const text = new this.fabric.IText(objects[3].text, {
-                    left: objects[3].left + 300,
-                    top: objects[3].top + 300,
-                    fill: objects[3].fill,
-                    fontSize: objects[3].fontSize,
-                    fontWeight: objects[3].fontWeight,
-                    fontFamily: objects[3].fontFamily,
-                    textLines: objects[3].textLines,
-                    textAlign: objects[3].textAlign,
-                    fontStyle: objects[3].fontStyle,
-                });
-                this.$props.canvas.add(rect);
-                this.$props.canvas.add(circle);
-                this.$props.canvas.add(triangle);
-                this.$props.canvas.add(text);
             });
         },
     }
