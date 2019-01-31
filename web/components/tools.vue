@@ -142,25 +142,16 @@
                 console.log('Copy Object');
             },
 
-            setActiveObjectColor(color) {
-                const canvas = this.$props.canvas;
-                const activeObject = canvas.getActiveObject();
-                if (!activeObject) {
-                    return;
-                }
-                activeObject.set('fill', color);
-                canvas.requestRenderAll();
-            },
-
             setActiveObjectsColor(color) {
                 const canvas = this.$props.canvas;
                 const activeObjects = canvas.getActiveObjects();
                 if (!activeObjects) {
                     return;
                 }
-                console.log(activeObjects);
-                // activeObject.set('fill', color);
-                // canvas.requestRenderAll();
+                activeObjects.forEach((obj) => {
+                    obj.set('fill', color);
+                });
+                canvas.requestRenderAll();
             },
 
         },

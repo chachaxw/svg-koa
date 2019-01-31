@@ -3,10 +3,16 @@
         <div class="page-header">
             PPT-KOA
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid" @contextmenu.prevent="$refs.menu.open($event, { foo: 'bar' })">
             <tools :canvas="canvas"></tools>
             <canvas id="fabricCanvas"></canvas>
         </div>
+        <vue-context ref="menu">
+            <ul slot-scope="child">
+                <li @click="onClick($event.target.innerText, child.data)">Option 1</li>
+                <li @click="onClick($event.target.innerText, child.data)">Option 2</li>
+            </ul>
+        </vue-context>
     </div>
 </template>
 <script>
@@ -21,6 +27,7 @@
         },
         components: {
             tools,
+            VueContext,
         },
         methods: {
             initCanvas() {
@@ -29,12 +36,24 @@
                     width: 1066,
                     height: 600,
                     isDrawingMode: false,
-                    stopContextMenu: true,
                     selectionBorderColor: '#ddd',
                     selectionColor: 'rgba(0,0,0,.05)',
                 });
                 this.$data.canvas = canvas;
             },
+
+            /**
+             * Alert the text of the menu item that was clicked on.
+             * Console log the data sent from the menu.
+             * 
+             * @param {string} text
+             * @param {object} data
+             */
+            onClick(text, data) {
+                alert(`You clicked ${text}!`);
+                console.log(data);
+                // => { foo: 'bar' }
+            }
         },
         mounted() {
             this.initCanvas();
