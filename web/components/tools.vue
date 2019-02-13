@@ -1,22 +1,42 @@
 <template>
     <div id="tools-panel">
         <div class="tools-group">
-            <button @click="addText"><icon name="pen"></icon></button>
-            <button @click="addRect"><icon name="vector-square"></icon></button>
-            <button @click="addPolygon"><icon name="draw-polygon"></icon></button>
-            <button @click="addCircle"><icon name="circle"></icon></button>
-            <button @click="onDraw"><icon name="pen-nib"></icon></button>
-            <button @click="onGroup"><icon name="object-group"></icon></button>
-            <button @click="onUngroup"><icon name="object-ungroup"></icon></button>
-            <button @click="onCopy"><icon name="copy"></icon></button>
-            <button @click="isShowPicker = !isShowPicker">
+            <button @click="addText" v-tooltip.bottom="'Add Text'">
+                <icon name="pen"></icon>
+            </button>
+            <button @click="addRect" v-tooltip.bottom="'Add Rect'">
+                <icon name="vector-square"></icon>
+            </button>
+            <button @click="addPolygon" v-tooltip.bottom="'Add Polygon'">
+                <icon name="draw-polygon"></icon>
+            </button>
+            <button @click="addCircle" v-tooltip.bottom="'Add Circle'">
+                <icon name="circle"></icon>
+            </button>
+            <button @click="onDraw" v-tooltip.bottom="'Draw'">
+                <icon name="pen-nib"></icon>
+            </button>
+            <button @click="onGroup" v-tooltip.bottom="'Group'">
+                <icon name="object-group"></icon>
+            </button>
+            <button @click="onUngroup" v-tooltip.bottom="'Ungroup'">
+                <icon name="object-ungroup"></icon>
+            </button>
+            <button @click="onCopy" v-tooltip.bottom="'Copy'">
+                <icon name="copy"></icon>
+            </button>
+            <button @click="isShowPicker = !isShowPicker" v-tooltip.bottom="'Color Palette'">
                 <icon name="palette"></icon>
             </button>
-            <button><icon name="file"></icon></button>
-            <button @click="onRemove">
+            <button v-tooltip.bottom="'Upload File'">
+                <icon name="file"></icon>
+            </button>
+            <button @click="onRemove" v-tooltip.bottom="'Remove'">
                 <icon name="times"></icon>
             </button>
-            <button @click="onClear"><icon name="trash"></icon></button>
+            <button @click="onClear" v-tooltip.bottom="'Clear All'">
+                <icon name="trash"></icon>
+            </button>
         </div>
         <transition name="slide-fade">
             <compact v-model="color" v-show="isShowPicker"></compact>
@@ -27,7 +47,6 @@
 <script>
     import compact from 'vue-color/src/components/Compact';
     import example from '../mock/example.svg';
-    import test from '../mock/test.svg';
 
     export default {
         data() {
@@ -134,25 +153,25 @@
                 this.$props.canvas.clear();
             },
 
-            showPicker() {
-                this.$props.isShowPicker = !this.$data.isShowPicker;
-            },
-
             onCopy() {
                 console.log('Copy Object');
             },
 
             setActiveObjectsColor(color) {
-                const canvas = this.$props.canvas;
-                const activeObjects = canvas.getActiveObjects();
+                const activeObjects = this.getActiveObjects();
                 if (!activeObjects) {
                     return;
                 }
                 activeObjects.forEach((obj) => {
                     obj.set('fill', color);
                 });
-                canvas.requestRenderAll();
+                this.$props.canvas.requestRenderAll();
             },
+
+            getActiveObjects() {
+                const canvas = this.$props.canvas;
+                return canvas.getActiveObjects();
+            }
 
         },
         watch: {
@@ -184,8 +203,8 @@
             };
         },
         mounted() {
-            console.log(this.fabric)
-            this.fabric.loadSVGFromURL(test, (objects, options) => {
+            console.log(this.fabric);
+            this.fabric.loadSVGFromURL(example, (objects, options) => {
                 objects.forEach(item => {
                     switch (item.type) {
                         // case 'path':

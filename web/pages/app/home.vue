@@ -3,7 +3,7 @@
         <div class="page-header">
             PPT-KOA
         </div>
-        <div class="container-fluid" @contextmenu.prevent="$refs.menu.open($event, { foo: 'bar' })">
+        <div class="container-fluid">
             <tools :canvas="canvas"></tools>
             <canvas id="fabricCanvas"></canvas>
         </div>

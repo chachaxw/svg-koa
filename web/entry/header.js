@@ -1,10 +1,13 @@
 import Vue from 'vue';
 import Icon from 'vue-awesome';
+import VTooltip from 'v-tooltip';
 
 global.Vue = Vue;
 Vue.config.productionTip = false;
 
 Vue.component('icon', Icon);
+
+Vue.use(VTooltip);
 
 require('../global');
 require('../vendor');
