@@ -39,7 +39,7 @@
     "time-fix-plugin": "^2.0.3",
     "v-tooltip": "^2.0.0-rc.33",
     "vue": "^2.6.6",
-    "vue-awesome": "^3.3.1",
+    "vue-awesome": "^3.4.0",
     "vue-color": "^2.7.0",
     "vue-context": "^3.4.0",
     "vue-upload-component": "^2.8.18",
