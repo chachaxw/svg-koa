@@ -1,11 +1,13 @@
 <template>
     <div id="home-app">
         <div class="page-header">
-            PPT-KOA
+            SVG-KOA
         </div>
         <div class="container-fluid">
             <tools :canvas="canvas"></tools>
-            <canvas id="fabricCanvas"></canvas>
+            <div class="main-container">
+                <canvas id="fabricCanvas"></canvas>
+            </div>
         </div>
         <vue-context ref="menu">
             <ul slot-scope="child">
@@ -85,11 +87,13 @@
         height: calc(100% - 74px);
     }
 
-    .canvas-container {
-        position: absolute;
-        margin-top: 50px;
-        left: 50%;
-        transform: translateX(-50%);
+    .main-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+        height: calc(100% - 50px);
     }
 
     #fabricCanvas {

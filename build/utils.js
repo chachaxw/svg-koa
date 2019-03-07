@@ -1,6 +1,6 @@
 'use strict'
-const path = require('path')
-const config = require('../config')
+const path = require('path');
+const config = require('../config');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const packageConfig = require('../package.json')
@@ -63,8 +63,7 @@ exports.cssLoaders = function (options) {
         less: generateLoaders('less'),
         sass: generateLoaders('sass', { indentedSyntax: true }),
         scss: generateLoaders('sass'),
-        stylus: generateLoaders('stylus'),
-        styl: generateLoaders('stylus')
+        stylus: generateLoaders('stylus')
     }
 }
 

@@ -2,6 +2,7 @@ var utils = require('./utils');
 var webpack = require('webpack');
 var config = require('../config');
 var merge = require('webpack-merge');
+const { VueLoaderPlugin } = require('vue-loader');
 var baseWebpackConfig = require('./webpack.base.conf');
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 var webpackDevConf = require('../webpack.dev.conf');
@@ -28,6 +29,7 @@ module.exports = merge(baseWebpackConfig, {
         rules: utils.styleLoaders({sourceMap: config.dev.cssSourceMap})
     },
     plugins: [
+        new VueLoaderPlugin(),
         new webpack.DefinePlugin({
             'process.env': config.dev.env
         }),

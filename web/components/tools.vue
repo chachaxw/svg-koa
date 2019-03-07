@@ -171,8 +171,46 @@
             getActiveObjects() {
                 const canvas = this.$props.canvas;
                 return canvas.getActiveObjects();
-            }
+            },
 
+            scaleTo (obj, targetWidth, targetHeight) {
+                const w = obj.getWidth();
+                const h = obj.getHeight();
+                obj.setScaleX(targetWidth / w);
+                obj.setScaleY(targetWidth / h);
+            },
+
+            zoomIt (factor) {
+                const canvas = this.$props.canvas;
+                canvas.setHeight(canvas.getHeight() * factor);
+                canvas.setWidth(canvas.getWidth() * factor);
+                if (canvas.backgroundImage) {
+                    // Need to scale background images as well
+                    var bi = canvas.backgroundImage;
+                    bi.width = bi.width * factor; bi.height = bi.height * factor;
+                }
+                const objects = canvas.getObjects();
+                for (let i in objects) {
+                    const scaleX = objects[i].scaleX;
+                    const scaleY = objects[i].scaleY;
+                    const left = objects[i].left;
+                    const top = objects[i].top;
+
+                    const tempScaleX = scaleX * factor;
+                    const tempScaleY = scaleY * factor;
+                    const tempLeft = left * factor;
+                    const tempTop = top * factor;
+
+                    objects[i].scaleX = tempScaleX;
+                    objects[i].scaleY = tempScaleY;
+                    objects[i].left = tempLeft;
+                    objects[i].top = tempTop;
+
+                    objects[i].setCoords();
+                }
+                canvas.renderAll();
+                canvas.calcOffset();
+            }
         },
         watch: {
             'color'(newVal, oldVal) {
@@ -207,12 +245,12 @@
             this.fabric.loadSVGFromURL(example, (objects, options) => {
                 objects.forEach(item => {
                     switch (item.type) {
-                        // case 'path':
-                        //     const path = new this.fabric.Path(item.oCoords, {
-                        //         ...item
-                        //     });
-                        //     this.$props.canvas.add(path);
-                        //     break;
+                        case 'path':
+                            const path = new this.fabric.Path(item.oCoords, {
+                                ...item
+                            });
+                            this.$props.canvas.add(path);
+                            break;
                         case 'circle':
                             const circle = new this.fabric.Circle({...item});
                             this.$props.canvas.add(circle);
@@ -248,6 +286,10 @@
                             break;
                     }
                 });
+                // const obj = this.fabric.util.groupSVGElements(objects, options);
+                // console.log(obj)
+                // this.scaleTo(obj, 200, 200);
+                // this.$props.canvas.add(obj).renderAll();
             });
         },
     }
