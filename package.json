@@ -35,7 +35,7 @@
     "promise-polyfill": "^8.1.0",
     "qs": "^6.6.0",
     "time-fix-plugin": "^2.0.3",
-    "v-tooltip": "^1.1.6",
+    "v-tooltip": "^2.0.1",
     "vue": "^2.6.8",
     "vue-awesome": "^3.4.0",
     "vue-color": "^2.7.0",
