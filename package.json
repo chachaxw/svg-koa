@@ -9,7 +9,6 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.3.4",
     "axios": "^0.18.0",
     "fabric": "^2.7.0",
     "formidable": "^1.2.1",
@@ -47,9 +46,10 @@
     "@babel/core": "^7.3.4",
     "@babel/node": "^7.2.2",
     "@babel/plugin-transform-runtime": "^7.3.4",
-    "@babel/polyfill": "^7.2.5",
+    "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
+    "@babel/runtime": "^7.3.4",
     "@babel/runtime-corejs2": "^7.3.4",
     "@vue/babel-preset-app": "^3.4.1",
     "autoprefixer": "^9.4.10",
@@ -69,7 +69,7 @@
     "mini-css-extract-plugin": "^0.5.0",
     "mockjs": "^1.0.1-beta3",
     "node-sass": "^4.11.0",
-    "nodemon": "^1.18.10",
+    "nodemon": "^1.18.11",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "ora": "^3.2.0",
     "postcss-import": "^12.0.1",
