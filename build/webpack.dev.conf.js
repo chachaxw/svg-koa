@@ -16,26 +16,26 @@ baseWebpackConfig = Object.assign({}, baseWebpackConfig, webpackDevConf);
 
 var webpackEntry = [];
 Object.keys(webpackEntryConf).forEach(function (name) {
-    webpackEntry.push(webpackEntryConf[name]);
+  webpackEntry.push(webpackEntryConf[name]);
 });
 
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
-    baseWebpackConfig.entry[name] = webpackEntry.concat([baseWebpackConfig.entry[name]], webpackHotClient);
+  baseWebpackConfig.entry[name] = webpackEntry.concat([baseWebpackConfig.entry[name]], webpackHotClient);
 });
 
 module.exports = merge(baseWebpackConfig, {
-    mode: 'development',
-    module: {
-        rules: utils.styleLoaders({sourceMap: config.dev.cssSourceMap})
-    },
-    plugins: [
-        new VueLoaderPlugin(),
-        new webpack.DefinePlugin({
-            'process.env': config.dev.env
-        }),
-        new webpack.NamedModulesPlugin(),
-        new TimeFixPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new FriendlyErrorsPlugin()
+  mode: 'development',
+  module: {
+    rules: utils.styleLoaders({sourceMap: config.dev.cssSourceMap})
+  },
+  plugins: [
+    new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+        'process.env': config.dev.env
+    }),
+    new webpack.NamedModulesPlugin(),
+    new TimeFixPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new FriendlyErrorsPlugin()
     ]
 });

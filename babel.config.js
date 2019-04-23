@@ -6,7 +6,8 @@ module.exports = {
         "modules": false,
         "targets": {
           "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
-        }
+        },
+        "useBuiltIns": "usage"
       }
     ],
     "@vue/app"
@@ -15,7 +16,7 @@ module.exports = {
     [
       "@babel/plugin-transform-runtime",
       {
-        "corejs": 2
+        "corejs": 3
       }
     ],
     [
