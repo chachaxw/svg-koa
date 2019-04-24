@@ -31,7 +31,7 @@ module.exports = merge(baseWebpackConfig, {
   plugins: [
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({
-        'process.env': config.dev.env
+      'process.env': config.dev.env
     }),
     new webpack.NamedModulesPlugin(),
     new TimeFixPlugin(),

@@ -6,23 +6,13 @@ module.exports = {
         "modules": false,
         "targets": {
           "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
-        },
-        "useBuiltIns": "usage",
-        "corejs": 2
+        }
       }
     ],
     "@vue/app"
   ],
   plugins: [
-    [
-      "@babel/plugin-transform-runtime",
-      {
-        "corejs": 2,
-        "helpers": true,
-        "regenerator": true,
-        "useESModules": true
-      }
-    ],
+    "@babel/plugin-transform-runtime",
     [
       "component",
       {
