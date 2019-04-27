@@ -1,17 +1,19 @@
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TarserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const config = require('./config');
 const webpack = require('webpack');
 const utils = require('./build/utils');
+const { VueLoaderPlugin } = require('vue-loader');
+
 const env = config.build.env;
 
 module.exports = {
   mode: 'production',
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
+      new TarserPlugin({
         cache: true,
         parallel: true,
         sourceMap: true
@@ -42,6 +44,8 @@ module.exports = {
     }
   },
   plugins: [
+    new VueLoaderPlugin(),
+
     new webpack.DefinePlugin({
       'process.env': env
     }),
