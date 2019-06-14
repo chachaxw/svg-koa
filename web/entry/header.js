@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Icon from 'vue-awesome';
 import VTooltip from 'v-tooltip';
+import Antd from 'ant-design-vue';
 
 global.Vue = Vue;
 Vue.config.productionTip = false;
@@ -8,6 +9,7 @@ Vue.config.productionTip = false;
 Vue.component('icon', Icon);
 
 Vue.use(VTooltip);
+Vue.use(Antd);
 
 require('../global');
 require('../vendor');
@@ -22,5 +24,5 @@ import '../styles/index.scss';
 import * as filters from '../filters';
 
 Object.keys(filters).forEach(key => {
-    Vue.filter(key, filters[key]);
+  Vue.filter(key, filters[key]);
 });

@@ -29,7 +29,7 @@
                 <icon name="palette"></icon>
             </button>
             <button v-tooltip.bottom="'Upload File'">
-                <icon name="file"></icon>
+                <icon name="upload"></icon>
             </button>
             <button @click="onRemove" v-tooltip.bottom="'Remove'">
                 <icon name="times"></icon>
@@ -104,9 +104,9 @@
 
             addPolygon() {
                 var path = new this.fabric.Path('M 0 0 L 300 100 L 200 300 z');
-                path.set({ 
-                    fill: this.$data.colorValue || 'red', 
-                    stroke: 'green', 
+                path.set({
+                    fill: this.$data.colorValue || 'red',
+                    stroke: 'green',
                     opacity: 0.5
                 });
                 this.$props.canvas.add(path);
