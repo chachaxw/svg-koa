@@ -2,7 +2,9 @@ var utils = require('./utils');
 var webpack = require('webpack');
 var config = require('../config');
 var merge = require('webpack-merge');
-const { VueLoaderPlugin } = require('vue-loader');
+const {
+  VueLoaderPlugin
+} = require('vue-loader');
 var baseWebpackConfig = require('./webpack.base.conf');
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 var webpackDevConf = require('../webpack.dev.conf');
@@ -26,7 +28,9 @@ Object.keys(baseWebpackConfig.entry).forEach(function (name) {
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',
   module: {
-    rules: utils.styleLoaders({sourceMap: config.dev.cssSourceMap})
+    rules: utils.styleLoaders({
+      sourceMap: config.dev.cssSourceMap
+    })
   },
   plugins: [
     new VueLoaderPlugin(),
@@ -37,5 +41,5 @@ module.exports = merge(baseWebpackConfig, {
     new TimeFixPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new FriendlyErrorsPlugin()
-    ]
+  ]
 });
