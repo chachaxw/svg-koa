@@ -6,5 +6,5 @@ import _ from 'lodash';
  * @return {Boolean}
  */
 export function isEmptyArray(array) {
-    return !array || (Object.prototype.toString.call(array) === '[object Array]' && array.length === 0);
+  return !array || (Object.prototype.toString.call(array) === '[object Array]' && array.length === 0);
 }
