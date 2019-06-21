@@ -1,6 +1,12 @@
 <template>
   <div id="tools-panel">
     <div class="tools-group">
+      <button v-tooltip.bottom="'Undo'">
+        <icon name="undo"></icon>
+      </button>
+      <button v-tooltip.bottom="'Redo'">
+        <icon name="redo"></icon>
+      </button>
       <button @click="addText" v-tooltip.bottom="'Add Text'">
         <icon name="pen"></icon>
       </button>
