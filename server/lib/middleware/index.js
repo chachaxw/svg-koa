@@ -13,17 +13,17 @@ const helmet = require('./helmet');
 const stateContext = require('./state-context');
 
 module.exports.default = module.exports = {
-    session,
-    catchError,
-    handlebars,
-    proxy,
-    router,
-    webpack,
-    listen,
-    view,
-    staticServe,
-    bodyParser,
-    logger,
-    helmet,
-    stateContext
+  session,
+  catchError,
+  handlebars,
+  proxy,
+  router,
+  webpack,
+  listen,
+  view,
+  staticServe,
+  bodyParser,
+  logger,
+  helmet,
+  stateContext
 };
