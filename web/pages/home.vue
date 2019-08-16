@@ -17,8 +17,8 @@
 </template>
 <script>
 import { VueContext } from "vue-context";
-import { initAligningGuidelines } from "../../vendor";
-import tools from "../../components/tools";
+import { initAligningGuidelines } from "@/vendor";
+import tools from "@/components/tools";
 
 export default {
   data() {

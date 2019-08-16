@@ -1,6 +1,6 @@
-module.exports ={
+module.exports = {
   entry: {
-    'app': './web/pages/app/index.js',
+    'app': './web/pages/index.js',
   },
   //devtool: '#cheap-module-eval-source-map',
 };
