@@ -80,7 +80,7 @@ export default {
   methods: {
     addText() {
       const text = new this.fabric.IText("Type something", {
-        fill: this.$data.colorValue || "#FFFFFF",
+        fill: this.$data.colorValue || "#000",
         fontSize: 16,
         fontFamily: "Arial"
       });
