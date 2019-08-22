@@ -1,6 +1,6 @@
 {
   "apps": [{
-    "name": "xlsx-koa",
+    "name": "svg-koa",
     "script": "./server/server.js",
     "cwd": "./",
     "watch": true,
