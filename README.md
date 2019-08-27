@@ -29,7 +29,7 @@
 │    ├── mock                                   #     模拟数据
 │    ├── router                                 #     路由(koa-router,或前端用vue-router)
 │    ├── view                                   #     视图
-│    ├── server.js                              #     服务端入口
+│    ├── app.js                                 #     服务端入口
 ├── dist                                        # 生产目录
 ├── public                                      # 公共资源(例如访问http://localhost:3333/public/img/bg.jpg)
 │    ├── img                                    #     图片
@@ -112,7 +112,7 @@ module.exports.default = module.exports = {
 };
 ```
 
-**ctx.state.appName** 
+**ctx.state.appName**
 
 默认值:'',开发模式下不会加载生产后的css,**parseUrl**有解释.
 
@@ -261,15 +261,15 @@ module.exports ={
 ```javascript
 entry: {
     'app': [
-        './web/entry/header.js', 
-        './web/entry/footer.js' , 
-        './web/pages/app/index.js' , 
+        './web/entry/header.js',
+        './web/entry/footer.js' ,
+        './web/pages/app/index.js' ,
         'webpack-hot-client/client'
     ],
     'app2': [
-        './web/entry/header.js', 
-        './web/entry/footer.js' , 
-        './web/pages/app/index.js' , 
+        './web/entry/header.js',
+        './web/entry/footer.js' ,
+        './web/pages/app/index.js' ,
         'webpack-hot-client/client'
     ]
 }
@@ -488,5 +488,5 @@ buildPath:
 
 **prod**
 
-从这些配置文件打包 `/webpack.base.conf` , ` /webpack.entry.conf.js` , `/webpack.prod.conf` , `/web/pages/**/index.js`    
+从这些配置文件打包 `/webpack.base.conf` , ` /webpack.entry.conf.js` , `/webpack.prod.conf` , `/web/pages/**/index.js`
 **主要从`/web/pages/**/index.js`打包所有js.**
