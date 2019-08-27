@@ -1,6 +1,6 @@
 <template>
   <div id="home-app">
-    <div class="page-header">SVG-KOA</div>
+    <div class="page-header">Svg-Koa</div>
     <div class="container-fluid">
       <tools :canvas="canvas"></tools>
       <div class="main-container">

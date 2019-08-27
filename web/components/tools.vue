@@ -43,6 +43,13 @@
       <button @click="onClear" v-tooltip.bottom="'Clear All'">
         <icon name="trash"></icon>
       </button>
+      <a-input-number
+        :min="10"
+        :max="1000"
+        :formatter="value => `${value}%`"
+        v-model="scale"
+        @change="zoomIt"
+      />
     </div>
     <transition name="slide-fade">
       <compact v-model="color" v-show="isShowPicker"></compact>
@@ -57,11 +64,12 @@ import example from "../mock/example.svg";
 export default {
   data() {
     return {
+      color: {},
+      colors: [],
+      scale: 100,
       activeObject: {},
       isDrawingMode: false,
       isShowPicker: false,
-      colors: [],
-      color: {},
       colorValue: null
     };
   },
@@ -161,6 +169,7 @@ export default {
 
     onCopy() {
       console.log("Copy Object");
+      console.log(this.$props.canvas.getActiveObject());
     },
 
     setActiveObjectsColor(color) {
@@ -182,21 +191,28 @@ export default {
     scaleTo(obj, targetWidth, targetHeight) {
       const w = obj.getWidth();
       const h = obj.getHeight();
+
       obj.setScaleX(targetWidth / w);
       obj.setScaleY(targetWidth / h);
     },
 
     zoomIt(factor) {
+      factor = factor / 100;
+
       const canvas = this.$props.canvas;
+
       canvas.setHeight(canvas.getHeight() * factor);
       canvas.setWidth(canvas.getWidth() * factor);
+
       if (canvas.backgroundImage) {
         // Need to scale background images as well
         var bi = canvas.backgroundImage;
         bi.width = bi.width * factor;
         bi.height = bi.height * factor;
       }
+
       const objects = canvas.getObjects();
+
       for (let i in objects) {
         const scaleX = objects[i].scaleX;
         const scaleY = objects[i].scaleY;
@@ -287,7 +303,7 @@ button {
   border: none;
   outline: none;
   width: 32px;
-  height: 32px;
+  line-height: 1;
   color: #444444;
   cursor: pointer;
   background-color: transparent;
