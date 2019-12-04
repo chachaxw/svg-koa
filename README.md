@@ -2,6 +2,10 @@
 
 > A fabric.js and koa application
 
+![Github issues](https://img.shields.io/github/issues/chachaxw/svg-koa)
+![Github forks](https://img.shields.io/github/forks/chachaxw/svg-koa)
+![Github stars](https://img.shields.io/github/stars/chachaxw/svg-koa)
+
 ## Architecture
 
 ### 前端
