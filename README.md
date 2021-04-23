@@ -10,15 +10,15 @@
 
 ### 前端
 
-* `样式`: scss.
-* `库管理`: npm,bower
-* `框架`: vue2.
-* `模板引擎`: handlebars4.
-* `打包`: webpack4
+- `样式`: scss.
+- `库管理`: npm,bower
+- `框架`: vue2.
+- `模板引擎`: handlebars4.
+- `打包`: webpack4
 
 ### 中台
 
-* `框架`: koa2, nodejs>=7
+- `框架`: koa2, nodejs>=7
 
 ## 目录结构
 
@@ -56,14 +56,14 @@
 
 ## 安装
 
-``` bash
+```bash
 npm install    # npm 安装
 bower install  # bower 安装
 ```
 
 ## 命令
 
-``` bash
+```bash
 npm run dev    # 启动开发模式(dev)
 npm run build  # 构建项目
 npm run prod   # 启动生产模式(prod)
@@ -71,58 +71,58 @@ npm run prod   # 启动生产模式(prod)
 
 ## example
 
-![Screen Shot](https://github.com/chachaxw/svg-koa/blob/master/public/img/svg-koa.png)
+![Screen Shot](./public/img/svg-koa.png)
 
 ### 1.新建应用路由
 
-* ```/server/router/app/index.js```
+- `/server/router/app/index.js`
 
 ```javascript
-const mainCtrl = require('../controller/index');
+const mainCtrl = require("../controller/index");
 module.exports.default = module.exports = [
-    {path: '', ctrl: mainCtrl.pageHome},
-    {path: 'main', ctrl: mainCtrl.pageHome},
-    {path: 'api/list', ctrl: mainCtrl.list, method: 'post'}
+  { path: "", ctrl: mainCtrl.pageHome },
+  { path: "main", ctrl: mainCtrl.pageHome },
+  { path: "api/list", ctrl: mainCtrl.list, method: "post" }
 ];
 ```
 
 ### 2.新建应用控制器
 
-* ```/server/controller/index.js```
+- `/server/controller/index.js`
 
 ```javascript
-const api = require('../api/index');
+const api = require("../api/index");
 
 const pageHome = async (ctx, _next) => {
-    let locals = {
-        title: 'home-page'
-    };
-    //appName开发模式下不会加载生产后的css,只有在路由对应的控制器设置
-    ctx.state.appName = 'app';
-    await ctx.render('pages/home', locals);
+  let locals = {
+    title: "home-page"
+  };
+  //appName开发模式下不会加载生产后的css,只有在路由对应的控制器设置
+  ctx.state.appName = "app";
+  await ctx.render("pages/home", locals);
 };
 
 const list = async (ctx, _next) => {
-    //不需要设置ctx.state.appName
-    let locals = {
-        list: await api.getList(ctx)
-    };
-    ctx.body = locals;
+  //不需要设置ctx.state.appName
+  let locals = {
+    list: await api.getList(ctx)
+  };
+  ctx.body = locals;
 };
 
 module.exports.default = module.exports = {
-    pageHome,
-    list
+  pageHome,
+  list
 };
 ```
 
 **ctx.state.appName**
 
-默认值:'',开发模式下不会加载生产后的css,**parseUrl**有解释.
+默认值:'',开发模式下不会加载生产后的 css,**parseUrl**有解释.
 
 ### 3.新建应用视图
 
-```/server/view/pages/home.hbs```
+`/server/view/pages/home.hbs`
 
 ```handlebars
 
@@ -142,13 +142,13 @@ module.exports.default = module.exports = {
 
 #### 引用
 
-* [handlebars(模板引擎)](https://github.com/wycats/handlebars.js)
+- [handlebars(模板引擎)](https://github.com/wycats/handlebars.js)
 
-* [handlebars-layouts(模板引擎布局helpers)](https://github.com/shannonmoeller/handlebars-layouts)
+- [handlebars-layouts(模板引擎布局 helpers)](https://github.com/shannonmoeller/handlebars-layouts)
 
 #### parseUrl
 
-解析url, handlebars自定义helpers.结合ctx.state.appName,根据当前开发环境返回正确的url.
+解析 url, handlebars 自定义 helpers.结合 ctx.state.appName,根据当前开发环境返回正确的 url.
 
 **dev**
 
@@ -162,7 +162,6 @@ module.exports.default = module.exports = {
 ↓↓↓
 
 ```html
-
 <script web="app.js"></script>
 ```
 
@@ -171,24 +170,22 @@ module.exports.default = module.exports = {
 ↓↓↓
 
 ```html
-
-<link href="/dist/static/css/app.[chunkhash].css" type="text/css" rel="stylesheet">
+<link href="/dist/static/css/app.[chunkhash].css" type="text/css" rel="stylesheet" />
 <script web="app.js"></script>
 ```
 
 **prod**
 
 ```html
-
-<link href="/dist/static/css/app.[chunkhash].css" type="text/css" rel="stylesheet">
+<link href="/dist/static/css/app.[chunkhash].css" type="text/css" rel="stylesheet" />
 <script web="/dist/static/js/app.[chunkhash].js"></script>
 ```
 
-如果没有build过,dev模式不会加载app.css,只加载app.js.即使加载build过的css也不影响dev模式下的样式应用.
+如果没有 build 过,dev 模式不会加载 app.css,只加载 app.js.即使加载 build 过的 css 也不影响 dev 模式下的样式应用.
 
 ### 4.新建应用页面
 
-* ```/web/pages/app/home.vue```
+- `/web/pages/app/home.vue`
 
 ```javascript
 ...
@@ -214,14 +211,14 @@ module.exports.default = module.exports = {
 
 ### 5.新建应用入口
 
-* ```/web/pages/app/index.js```
+- `/web/pages/app/index.js`
 
 ```javascript
-import homeApp from './home.vue';
+import homeApp from "./home.vue";
 new Vue({
-    el: '#home-app',
-    template: '<homeApp/>',
-    components: {homeApp}
+  el: "#home-app",
+  template: "<homeApp/>",
+  components: { homeApp }
 });
 ```
 
@@ -229,24 +226,24 @@ new Vue({
 
 ## 配置文件
 
-* ```/webpack.entry.conf.js```
+- `/webpack.entry.conf.js`
 
 **任何模式都引用的配置文件**
 
-** 作为全局通用的入口文件,处在不同位置.在开发,生产模式webapck构建时自动合并引入webpack.entry.(不做其他属性合并).一般情况不作修改.**
-```javascript
+** 作为全局通用的入口文件,处在不同位置.在开发,生产模式 webapck 构建时自动合并引入 webpack.entry.(不做其他属性合并).一般情况不作修改.**
 
-module.exports ={
-    header: './web/entry/header.js', //全局头部通用文件(引用vue,全局样式...)
-    footer: './web/entry/footer.js', //全局底部通用文件(比如统计数据...)
+```javascript
+module.exports = {
+  header: "./web/entry/header.js", //全局头部通用文件(引用vue,全局样式...)
+  footer: "./web/entry/footer.js" //全局底部通用文件(比如统计数据...)
 };
 ```
 
-`header.js`:不支持删除,在生产模式时,紧接着插入manifest.js,vendor.js.
+`header.js`:不支持删除,在生产模式时,紧接着插入 manifest.js,vendor.js.
 
 `footer.js`:支持删除.
 
-* ```/webpack.dev.conf.js```
+- `/webpack.dev.conf.js`
 
 **开发模式时所引用的配置文件,构建会合并所有属性.**
 
@@ -281,7 +278,7 @@ entry: {
 
 `webpack-hot-client/client(hot-reload)`: 开发模式时每个入口自动加入.
 
-* ```/webpack.prod.conf.js```
+- `/webpack.prod.conf.js`
 
 **生产模式时所引用的配置文件,构建会合并所有属性.**
 
@@ -306,17 +303,17 @@ entry: {
 }
 ```
 
-`/web/pages/**/index.js` 都是app. 这里,`app`, `app2` 2个app,甚至更多,即多页应用.
+`/web/pages/**/index.js` 都是 app. 这里,`app`, `app2` 2 个 app,甚至更多,即多页应用.
 
-`app`, `app2`,分别叫主app,其他app,还可以有另外app...等. 名字随你.
+`app`, `app2`,分别叫主 app,其他 app,还可以有另外 app...等. 名字随你.
 
-**项目只保留1个app,多app需另建.**
+**项目只保留 1 个 app,多 app 需另建.**
 
 ## 多语言方案(locales)
 
 ### 1.配置参数
 
-* ```/config.yml```
+- `/config.yml`
 
 ```yml
 ...
@@ -334,19 +331,19 @@ buildPath:
 
 ### 2.创建多语言文件
 
-* `/web/locale/zh.js`
+- `/web/locale/zh.js`
 
 ```javascript
 window.locale = {
-    'desc': 'vue koa 多页应用脚手架'
+  desc: "vue koa 多页应用脚手架"
 };
 ```
 
-* `/web/locale/en.js`
+- `/web/locale/en.js`
 
 ```javascript
 window.locale = {
-    'desc': 'vue koa scaffold'
+  desc: "vue koa scaffold"
 };
 ```
 
@@ -354,19 +351,18 @@ window.locale = {
 
 ### 3.创建全局方法
 
-* `/web/utils/locale.js`
+- `/web/utils/locale.js`
 
 ```javascript
 /**
  * 获取locale对应的值
  */
-window.getLocale = function (key) {
-    if (window.locale) {
-        return window.locale[key] || '';
-    }
-    else {
-        return key;
-    }
+window.getLocale = function(key) {
+  if (window.locale) {
+    return window.locale[key] || "";
+  } else {
+    return key;
+  }
 };
 ```
 
@@ -385,28 +381,27 @@ data() {
 
 路由则支持
 
-* http://localhost:3030/
-* http://localhost:3030/zh/
-* http://localhost:3030/en/
+- http://localhost:3030/
+- http://localhost:3030/zh/
+- http://localhost:3030/en/
 
 ## mock
 
-* ```/config.yml```
+- `/config.yml`
 
 ```yml
-...
+---
 # 是否使用模拟数据api(dev模式有效)
-isMockAPI : true
+isMockAPI: true
 # apiServer api服务器
-apiServer : 'http://localhost:3030'
-...
+apiServer: "http://localhost:3030"
 ```
 
 `isMockAPI:true`
 
 #### 引用:
 
-* [mockjs](http://mockjs.com/)
+- [mockjs](http://mockjs.com/)
 
 在页面渲染时在`/header/index.js`前插入`/public/vender/mock-min.js`.
 
@@ -414,11 +409,11 @@ apiServer : 'http://localhost:3030'
 <script src="/public/vendor/mockjs/dist/mock-min.js"></script><script src="header.js"></script>
 ```
 
-### 1.服务端Mock
+### 1.服务端 Mock
 
-#### 1.1 编写/server/mock/**/.json文件
+#### 1.1 编写/server/mock/\*\*/.json 文件
 
-* ```/server/mock/api/list.json```
+- `/server/mock/api/list.json`
 
 现在请求 `/api/list`
 
@@ -430,53 +425,48 @@ apiServer : 'http://localhost:3030'
 
 服务端返回 `http://localhost:3030/api/list`.
 
-### 2.前端Mock
+### 2.前端 Mock
 
-#### 2.1 编写/web/mock/**/index.js文件
+#### 2.1 编写/web/mock/\*\*/index.js 文件
 
-* ```/web/mock/index.js```
+- `/web/mock/index.js`
 
 ```javascript
-
-Mock.mock('/api/list', 'post', function () {
-    return Mock.mock({
-        "list|1-10": [{
-            'name': '@cname',
-            'imageUrl': 'https://placeholdit.imgix.net/~text?txtsize=50&bg=323232&txtclr=ffffff&txt=150%C3%97300&w=300&h=150',
-            'description': '@cname'
-        }]
-    });
+Mock.mock("/api/list", "post", function() {
+  return Mock.mock({
+    "list|1-10": [
+      {
+        name: "@cname",
+        imageUrl: "https://placeholdit.imgix.net/~text?txtsize=50&bg=323232&txtclr=ffffff&txt=150%C3%97300&w=300&h=150",
+        description: "@cname"
+      }
+    ]
+  });
 });
-
 ```
 
-**优先级:前端Mock文件>后端Mock文件.否则报500.**
+**优先级:前端 Mock 文件>后端 Mock 文件.否则报 500.**
 
 ## 打包
 
-* ```/config.yml```
+- `/config.yml`
 
 ```yml
-
-...
+---
 # webpack构建路径(prod模式有效)
 buildPath:
-    # name entry路径
-    # isIndexEntry 是否使用index.js作为webpack.entry.
-    # isIndexEntry = true
-    # './web/pages/app/index.js'  --> /dist/static/js/app[chunkhash].js
-    # 使用index.js上一级目录名作为打包文件名(example.js).
+  # name entry路径
+  # isIndexEntry 是否使用index.js作为webpack.entry.
+  # isIndexEntry = true
+  # './web/pages/app/index.js'  --> /dist/static/js/app[chunkhash].js
+  # 使用index.js上一级目录名作为打包文件名(example.js).
 
-    # isIndexEntry = false
-    # './web/locale/zh.js'           --> /dist/static/js/zh[chunkhash].js
-    # 使用当前文件作为打包文件名(zh.js).
-     -
-       name: './web/pages'
-       isIndexEntry : 'true'
-     -
-       name: './web/locale'
-...
-
+  # isIndexEntry = false
+  # './web/locale/zh.js'           --> /dist/static/js/zh[chunkhash].js
+  # 使用当前文件作为打包文件名(zh.js).
+  - name: "./web/pages"
+    isIndexEntry: "true"
+  - name: "./web/locale"
 ```
 
 一般情况每一个应用都建立在 `/web/pages/**/index.js`,以`index.js`作为打包入口.
@@ -488,9 +478,9 @@ buildPath:
 **dev**
 
 从这些配置文件打包 `/webpack.base.conf` , `/webpack.entry.conf.js` , `/webpack.dev.conf.js`
-**主要从`/webpack.dev.conf.js`配置打包开发需要的entry.**
+**主要从`/webpack.dev.conf.js`配置打包开发需要的 entry.**
 
 **prod**
 
-从这些配置文件打包 `/webpack.base.conf` , ` /webpack.entry.conf.js` , `/webpack.prod.conf` , `/web/pages/**/index.js`
-**主要从`/web/pages/**/index.js`打包所有js.**
+从这些配置文件打包 `/webpack.base.conf` , `/webpack.entry.conf.js` , `/webpack.prod.conf` , `/web/pages/**/index.js`
+**主要从`/web/pages/**/index.js`打包所有 js.\*\*
