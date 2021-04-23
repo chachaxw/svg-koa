@@ -1,1 +1,1 @@
-window.footer = 'ppt-koa-footer';
+window.footer = 'svg-koa-footer';

@@ -1,3 +1,3 @@
 module.exports ={
-    header: './web/entry/header.js',
+  header: './web/entry/header.js',
 };

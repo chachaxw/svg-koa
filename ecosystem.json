@@ -1,13 +1,13 @@
 {
   "apps": [{
-    "name": "xlsx-koa",
-    "script": "./server/server.js",
+    "name": "svg-koa",
+    "script": "./server/app.js",
     "cwd": "./",
     "watch": true,
     "node_args": "--harmony",
     "instances": "max",
     "exec_mode": "cluster",
-    "max_memory_restart" : "150M",
+    "max_memory_restart": "150M",
     "ignore_watch": [
       "node_modules",
       "logs"
@@ -18,9 +18,9 @@
     "error_file": "./logs/app-err.log",
     "out_file": "./logs/app-out.log",
     "env": {
-        "NODE_ENV": "production"
+      "NODE_ENV": "production"
     },
-    "env_production" : {
+    "env_production": {
       "NODE_ENV": "production"
     }
   }]

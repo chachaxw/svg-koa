@@ -1,6 +1,10 @@
-# ppt-koa
+# svg-koa
 
-> vue koa 应用脚手架
+> A fabric.js and koa application
+
+![Github issues](https://img.shields.io/github/issues/chachaxw/svg-koa)
+![Github forks](https://img.shields.io/github/forks/chachaxw/svg-koa)
+![Github stars](https://img.shields.io/github/stars/chachaxw/svg-koa)
 
 ## Architecture
 
@@ -14,7 +18,7 @@
 
 ### 中台
 
-* `框架`:koa2, nodejs>=7
+* `框架`: koa2, nodejs>=7
 
 ## 目录结构
 
@@ -29,7 +33,7 @@
 │    ├── mock                                   #     模拟数据
 │    ├── router                                 #     路由(koa-router,或前端用vue-router)
 │    ├── view                                   #     视图
-│    ├── server.js                              #     服务端入口
+│    ├── app.js                                 #     服务端入口
 ├── dist                                        # 生产目录
 ├── public                                      # 公共资源(例如访问http://localhost:3333/public/img/bg.jpg)
 │    ├── img                                    #     图片
@@ -67,7 +71,7 @@ npm run prod   # 启动生产模式(prod)
 
 ## example
 
-![Screen Shot](https://github.com/chachaxw/ppt-koa/blob/master/public/img/ppt-koa.jpg)
+![Screen Shot](https://github.com/chachaxw/svg-koa/blob/master/public/img/svg-koa.png)
 
 ### 1.新建应用路由
 
@@ -112,7 +116,7 @@ module.exports.default = module.exports = {
 };
 ```
 
-**ctx.state.appName** 
+**ctx.state.appName**
 
 默认值:'',开发模式下不会加载生产后的css,**parseUrl**有解释.
 
@@ -261,15 +265,15 @@ module.exports ={
 ```javascript
 entry: {
     'app': [
-        './web/entry/header.js', 
-        './web/entry/footer.js' , 
-        './web/pages/app/index.js' , 
+        './web/entry/header.js',
+        './web/entry/footer.js' ,
+        './web/pages/app/index.js' ,
         'webpack-hot-client/client'
     ],
     'app2': [
-        './web/entry/header.js', 
-        './web/entry/footer.js' , 
-        './web/pages/app/index.js' , 
+        './web/entry/header.js',
+        './web/entry/footer.js' ,
+        './web/pages/app/index.js' ,
         'webpack-hot-client/client'
     ]
 }
@@ -488,5 +492,5 @@ buildPath:
 
 **prod**
 
-从这些配置文件打包 `/webpack.base.conf` , ` /webpack.entry.conf.js` , `/webpack.prod.conf` , `/web/pages/**/index.js`    
+从这些配置文件打包 `/webpack.base.conf` , ` /webpack.entry.conf.js` , `/webpack.prod.conf` , `/web/pages/**/index.js`
 **主要从`/web/pages/**/index.js`打包所有js.**
